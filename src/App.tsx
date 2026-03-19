@@ -6,10 +6,13 @@ import { TaskList } from './components/TaskList';
 import { AddTaskModal } from './components/AddTaskModal';
 import { Analytics } from './components/Analytics';
 import { AnimatePresence, motion } from 'framer-motion';
+import { NamePromptModal } from './components/NamePromptModal';
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [activeTab, setActiveTab] = useState<'tasks' | 'analytics'>('tasks');
+  const [userName, setUserName] = useState<string>('');
+  const [isNameModalOpen, setIsNameModalOpen] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('yaqeen-theme') as 'light' | 'dark';
@@ -24,6 +27,16 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('yaqeen-theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const storedName = localStorage.getItem('yaqeen-user-name') || '';
+    if (storedName.trim()) {
+      setUserName(storedName);
+      setIsNameModalOpen(false);
+    } else {
+      setIsNameModalOpen(true);
+    }
+  }, []);
 
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
@@ -52,11 +65,21 @@ function App() {
         <div className="logo-container">
           <h1 className="logo-en">Yaqeen</h1>
           <span className="logo-ar">يقين</span>
+          {userName && <span className="greeting">Hi, {userName}</span>}
         </div>
         <button onClick={toggleTheme} className="icon-btn" aria-label="Toggle theme">
           {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
         </button>
       </header>
+
+      <NamePromptModal
+        open={isNameModalOpen}
+        onSubmit={(name) => {
+          localStorage.setItem('yaqeen-user-name', name);
+          setUserName(name);
+          setIsNameModalOpen(false);
+        }}
+      />
 
       <main
         className="app-main"

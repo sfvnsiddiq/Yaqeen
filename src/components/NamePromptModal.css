@@ -1,0 +1,106 @@
+.name-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding: 24px;
+}
+
+.name-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.name-modal-content {
+  position: relative;
+  z-index: 501;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.name-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name-modal-header h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.name-close-btn {
+  color: var(--text-secondary);
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.name-close-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.name-modal-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: -6px;
+}
+
+.name-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.name-input {
+  flex: 1;
+  width: 100%;
+  padding: 14px 14px;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.name-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.name-submit-btn {
+  padding: 14px 16px;
+  border-radius: var(--border-radius-md);
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.name-submit-btn:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.name-submit-btn:disabled {
+  background: var(--border-color);
+  color: var(--text-secondary);
+}
+
