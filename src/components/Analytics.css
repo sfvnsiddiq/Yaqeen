@@ -1,0 +1,120 @@
+.analytics-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.stats-header h2 {
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.stats-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.chart-card {
+    background: var(--surface-color);
+    border-radius: var(--border-radius-lg);
+    padding: 32px 24px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    gap: 24px;
+}
+
+.svg-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+}
+
+.chart-bg {
+    stroke: var(--border-color);
+}
+
+.chart-progress {
+    stroke: var(--primary-color);
+}
+
+.chart-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.percentage {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+}
+
+.legend {
+    display: flex;
+    gap: 24px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.completed {
+    background-color: var(--primary-color);
+}
+
+.dot.pending {
+    background-color: var(--border-color);
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.summary-card {
+    background: var(--surface-color);
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.summary-card h4 {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+}

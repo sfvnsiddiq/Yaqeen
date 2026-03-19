@@ -1,0 +1,88 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.logo-en {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+}
+
+.logo-ar {
+  font-family: 'Tajawal', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.app-main {
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.app-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 24px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.nav-item {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 8px 24px;
+  border-radius: var(--border-radius-lg);
+  transition: all 0.2s;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+.temp-content {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+}
