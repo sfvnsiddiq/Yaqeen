@@ -7,12 +7,57 @@ import { AddTaskModal } from './components/AddTaskModal';
 import { Analytics } from './components/Analytics';
 import { AnimatePresence, motion } from 'framer-motion';
 import { NamePromptModal } from './components/NamePromptModal';
+import { useTasks } from './store/TaskContext';
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [activeTab, setActiveTab] = useState<'tasks' | 'analytics'>('tasks');
   const [userName, setUserName] = useState<string>('');
   const [isNameModalOpen, setIsNameModalOpen] = useState(false);
+  const { tasks } = useTasks();
+
+  // Notification permission request
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission !== 'denied') {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  // Notification logic
+  useEffect(() => {
+    // Function to check and notify
+    const checkAndNotify = () => {
+      if ('Notification' in window && Notification.permission === 'granted') {
+        const pendingTasks = tasks.filter(t => !t.completed);
+        const highPriorityTasks = pendingTasks.filter(t => t.priority === 'high');
+        
+        if (pendingTasks.length > 0) {
+          let bodyText = `You have ${pendingTasks.length} pending task(s) remaining.`;
+          if (highPriorityTasks.length > 0) {
+            bodyText += ` (${highPriorityTasks.length} high priority)`;
+          }
+
+          // Use tag to replace the same notification instead of stacking them
+          new Notification('Yaqeen - Tasks Pending', {
+            body: bodyText,
+            icon: '/icons/favicon-32.png',
+            tag: 'pending-tasks-notification'
+          });
+        }
+      }
+    };
+
+    // Initial check after 10 seconds so it doesn't immediately popup on load
+    const initialTimeout = setTimeout(checkAndNotify, 10000);
+
+    // Periodic check every 1 hour
+    const interval = setInterval(checkAndNotify, 3600000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+  }, [tasks]);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('yaqeen-theme') as 'light' | 'dark';
